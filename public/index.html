@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ሐምራዊ ጉዞ - Purple Journey | Mental Health Awareness</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="js/translations.js"></script>
+    <script src="js/languageSwitcher.js"></script>
+    <script src="js/socialCounters.js"></script>
+    <script src="js/hamburger.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>ሐምራዊ ጉዞ</h1>
+                <p class="subtitle">Purple Journey</p>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home" data-i18n="nav_home">መነሻ</a></li>
+                <li><a href="#about" data-i18n="nav_about">ስለ እኛ</a></li>
+                <li><a href="#services" data-i18n="nav_services">አገልግሎቶች</a></li>
+                <li><a href="#resources" data-i18n="nav_resources">ግብአቶች</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">አግኙን</a></li>
+                <li>
+                    <select id="languageSelect" onchange="switchLanguage(this.value)">
+                        <option value="am">አማርኛ</option>
+                        <option value="en">English</option>
+                        <option value="ti">ትግርኛ</option>
+                        <option value="om">Afaan Oromoo</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 data-i18n="hero_welcome">እንኳን ወደ ሐምራዊ ጉዞ በደህና መጡ</h1>
+                <h2 data-i18n="hero_subtitle">የአእምሮ ጤንነት ጉዞዎ</h2>
+                <p data-i18n="hero_description">ስለ አእምሮ ጤንነት ግንዛቤን ለማሳደግ እና ድጋፍ ለመስጠት በተሳታፊ ይዘቶች እና ሀብቶች አማካኝነት እንሰራለን።</p>
+                <div class="cta-container">
+                    <a href="#contact" class="cta-button" data-i18n="hero_cta">
+                        <span class="cta-icon">❤</span>
+                        <span class="cta-text">ድጋፍ ያግኙ</span>
+                        <span class="cta-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            <div class="social-counters">
+                <a href="https://t.me/purplejourney" target="_blank" rel="noopener" class="counter telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                    <div class="counter-content">
+                        <span class="count">2.5K</span>
+                        <span data-i18n="social_telegram">Telegram</span>
+                    </div>
+                </a>
+                <a href="https://instagram.com/purplejourney" target="_blank" rel="noopener" class="counter instagram">
+                    <i class="fab fa-instagram"></i>
+                    <div class="counter-content">
+                        <span class="count">1.8K</span>
+                        <span data-i18n="social_instagram">Instagram</span>
+                    </div>
+                </a>
+                <a href="https://youtube.com/@purplejourney" target="_blank" rel="noopener" class="counter youtube">
+                    <i class="fab fa-youtube"></i>
+                    <div class="counter-content">
+                        <span class="count">1.2K</span>
+                        <span data-i18n="social_youtube">YouTube</span>
+                    </div>
+                </a>
+                <a href="https://tiktok.com/@purplejourney" target="_blank" rel="noopener" class="counter tiktok">
+                    <i class="fab fa-tiktok"></i>
+                    <div class="counter-content">
+                        <span class="count">950</span>
+                        <span data-i18n="social_tiktok">TikTok</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2 data-i18n="about_title">ስለ እኛ</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f" alt="Supporting Mental Health" />
+                </div>
+                <div class="about-text">
+                    <p data-i18n="about_p1">At ሐምራዊ ጉዞ, we understand that mental health journeys are unique and personal. Our mission is to create a safe space where stories are shared, support is offered, and healing begins.</p>
+                    <p data-i18n="about_p2">Through our content, we aim to break stigmas, educate, and provide resources for those affected by mental health challenges.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <h2 data-i18n="services_title">አገልግሎቶች</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="Educational Content" class="card-image">
+                    <h3 data-i18n="service_1_title">Educational Content</h3>
+                    <p data-i18n="service_1_desc">Informative articles and videos about mental health awareness and understanding.</p>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173" alt="Support Resources" class="card-image">
+                    <h3 data-i18n="service_2_title">Support Resources</h3>
+                    <p data-i18n="service_2_desc">Curated resources and tools for mental health support and guidance.</p>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e" alt="Community Support" class="card-image">
+                    <h3 data-i18n="service_3_title">Community Support</h3>
+                    <p data-i18n="service_3_desc">A safe space for sharing experiences and finding connection with others.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="resources">
+            <h2 data-i18n="resources_title">ግብአቶች</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765" alt="Articles" class="card-image">
+                    <h3 data-i18n="resource_1_title">Articles</h3>
+                    <p data-i18n="resource_1_desc">Read our latest articles on mental health topics.</p>
+                </div>
+                <div class="resource-card">
+                    <img src="https://images.unsplash.com/photo-1590650153855-d9e808231d41" alt="Videos" class="card-image">
+                    <h3 data-i18n="resource_2_title">Videos</h3>
+                    <p data-i18n="resource_2_desc">Watch our educational and supportive video content.</p>
+                </div>
+                <div class="resource-card">
+                    <img src="https://images.unsplash.com/photo-1557597774-9d475d5e8142" alt="Support Lines" class="card-image">
+                    <h3 data-i18n="resource_3_title">Support Lines</h3>
+                    <p data-i18n="resource_3_desc">Access to mental health helplines and emergency contacts.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2 data-i18n="contact_title">አግኙን</h2>
+            <form class="contact-form" id="contactForm">
+                <input type="text" id="name" name="name" data-i18n-placeholder="contact_name" required>
+                <input type="email" id="email" name="email" data-i18n-placeholder="contact_email" required>
+                <textarea id="message" name="message" data-i18n-placeholder="contact_message" required></textarea>
+                <button type="submit" class="submit-button" data-i18n="contact_submit">መልእክት ላክ</button>
+            </form>
+            <div id="formMessage" class="form-message"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>ሐምራዊ ጉዞ</h3>
+                <p data-i18n="footer_tagline">Your Mental Health Journey Matters</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ሐምራዊ ጉዞ. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/socialCounters.js"></script>
+    <script src="js/translations.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formMessage = document.getElementById('formMessage');
+            const submitButton = document.querySelector('.submit-button');
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                
+                const response = await fetch('http://localhost:3000/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Error submitting form');
+                }
+
+                // Success message
+                formMessage.textContent = data.message;
+                formMessage.className = 'form-message success';
+                document.getElementById('contactForm').reset();
+            } catch (error) {
+                // Error message
+                formMessage.textContent = error.message;
+                formMessage.className = 'form-message error';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+            }
+        });
+    </script>
+</body>
+</html>
