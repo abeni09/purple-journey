@@ -9,19 +9,24 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Routes
 const contactRoutes = require('./routes/contactRoutes');
-app.use('/api', contactRoutes);
+const socialMediaRoutes = require('./routes/socialMediaRoutes');
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/contact', contactRoutes);
+app.use('/api/social', socialMediaRoutes);
+app.use('/api/auth', authRoutes);
 
 // Serve index.html for all routes
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3003;
 
 // Initialize database and start server
 const startServer = async () => {

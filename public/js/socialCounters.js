@@ -1,109 +1,79 @@
-class SocialCounters {
-    constructor() {
-        // Sample follower counts - replace with actual API data
-        this.socialData = {
-            telegram: 15700,
-            instagram: 25300,
-            tiktok: 45800,
-            youtube: 12400
-        };
-        
-        this.animationDuration = 2000; // 2 seconds
-        this.init();
+// Format numbers (e.g., 1000 -> 1K)
+function formatNumber(num) {
+    if (num >= 1000000) {
+        return (num / 1000000).toFixed(1) + 'M';
     }
+    if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'K';
+    }
+    return num.toString();
+}
 
-    formatNumber(num) {
-        if (num >= 1000000) {
-            return (num / 1000000).toFixed(1) + 'M';
-        } else if (num >= 1000) {
-            return (num / 1000).toFixed(1) + 'K';
+// Animate counter from current to target number
+function animateCounter(element, target, duration = 2000) {
+    const start = parseInt(element.textContent.replace(/[^0-9]/g, '')) || 0;
+    const range = target - start;
+    const increment = range / (duration / 16);
+    let current = start;
+    
+    const animate = () => {
+        current += increment;
+        if ((increment >= 0 && current >= target) || (increment < 0 && current <= target)) {
+            element.textContent = formatNumber(target);
+        } else {
+            element.textContent = formatNumber(Math.floor(current));
+            requestAnimationFrame(animate);
         }
-        return num.toString();
-    }
+    };
+    
+    animate();
+}
 
-    animateValue(element, start, end, duration) {
-        const range = end - start;
-        const increment = range / (duration / 16); // 60fps
-        let current = start;
+// Update all social media counters
+async function updateSocialCounters() {
+    try {
+        const response = await fetch('/api/social/counts');
+        if (!response.ok) throw new Error('Failed to fetch counts');
         
-        const animate = () => {
-            current += increment;
-            if (current >= end) {
-                element.textContent = this.formatNumber(end);
-            } else {
-                element.textContent = this.formatNumber(Math.floor(current));
-                requestAnimationFrame(animate);
-            }
-        };
+        const platforms = await response.json();
         
-        animate();
-    }
-
-    startAnimation(entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const value = parseInt(counter.getAttribute('data-value'));
-                if (!isNaN(value)) {
-                    this.animateValue(counter, 0, value, this.animationDuration);
-                    observer.unobserve(counter); // Only animate once
+        platforms.forEach(platform => {
+            const counterElement = document.querySelector(`.counter.${platform.platform}`);
+            if (counterElement) {
+                // Update URL
+                if (platform.platform_url) {
+                    counterElement.href = platform.platform_url;
+                }
+                
+                // Update count
+                const countElement = counterElement.querySelector('.count');
+                if (countElement) {
+                    animateCounter(countElement, platform.follower_count);
                 }
             }
         });
-    }
-
-    init() {
-        const observer = new IntersectionObserver(
-            this.startAnimation.bind(this),
-            { threshold: 0.1 }
-        );
-
-        document.querySelectorAll('.social-counter').forEach(counter => {
-            observer.observe(counter);
-        });
+    } catch (error) {
+        console.error('Error updating social counters:', error);
     }
 }
 
+// Create Intersection Observer for counter animation
+const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            updateSocialCounters();
+            observer.unobserve(entry.target);
+        }
+    });
+};
+
+// Initialize when document is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const counters = document.querySelectorAll('.count');
-    const duration = 2000; // Animation duration in milliseconds
-
-    const animateCounter = (counter, targetValue) => {
-        let startValue = 0;
-        const increment = targetValue / (duration / 16); // 60 FPS
-        
-        const updateCounter = () => {
-            startValue += increment;
-            if (startValue < targetValue) {
-                counter.textContent = Math.ceil(startValue).toLocaleString();
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = targetValue.toLocaleString();
-            }
-        };
-
-        updateCounter();
-    };
-
-    const startCountAnimation = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const targetValue = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
-                counter.textContent = '0';
-                animateCounter(counter, targetValue);
-                observer.unobserve(counter);
-            }
+    const countersSection = document.querySelector('.social-counters');
+    if (countersSection) {
+        const observer = new IntersectionObserver(observerCallback, {
+            threshold: 0.1
         });
-    };
-
-    const observer = new IntersectionObserver(startCountAnimation, {
-        threshold: 0.5
-    });
-
-    counters.forEach(counter => {
-        observer.observe(counter);
-    });
-
-    window.socialCounters = new SocialCounters();
+        observer.observe(countersSection);
+    }
 });

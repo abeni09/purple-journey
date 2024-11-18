@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Dashboard | Purple Journey Admin</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .admin-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .social-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .social-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .social-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
+        }
+        .input-group {
+            margin-bottom: 0.5rem;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: #666;
+        }
+        .count-input, .url-input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        .update-btn {
+            background: #663399;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        .update-btn:hover {
+            background: #552288;
+        }
+        .update-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+        .error-message {
+            color: #ff4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .success-message {
+            color: #00c851;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .last-updated {
+            font-size: 0.875rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        .message {
+            min-height: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Social Media Dashboard</h1>
+        <div id="socialCards"></div>
+    </div>
+
+    <template id="socialCardTemplate">
+        <div class="social-card">
+            <div class="social-info">
+                <div class="social-icon">
+                    <i class="fab"></i>
+                </div>
+                <div>
+                    <h3 class="platform-name"></h3>
+                    <div class="last-updated"></div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Platform URL</label>
+                <input type="url" class="url-input" placeholder="Enter platform URL">
+            </div>
+            <div class="input-group">
+                <label>Follower Count</label>
+                <input type="number" class="count-input" min="0" placeholder="Enter follower count">
+            </div>
+            <button class="update-btn">Update</button>
+            <div class="message"></div>
+        </div>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script src="js/adminAuth.js"></script>
+    <script src="js/socialDashboard.js"></script>
+</body>
+</html>
